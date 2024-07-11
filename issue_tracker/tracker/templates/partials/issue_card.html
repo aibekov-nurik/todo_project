@@ -1,0 +1,11 @@
+
+<div class="card mb-3">
+    <div class="card-body">
+        <h5 class="card-title">{{ issue.summary }}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">{{ issue.status }}</h6>
+        <p class="card-text">{{ issue.description }}</p>
+        <a href="{% url 'issue_detail' issue.id %}" class="card-link">Подробнее</a>
+        <a href="{% url 'issue_update' issue.id %}" class="card-link">Редактировать</a>
+        <a href="{% url 'issue_delete' issue.id %}" class="card-link">Удалить</a>
+    </div>
+</div>

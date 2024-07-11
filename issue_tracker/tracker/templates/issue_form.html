@@ -1,0 +1,11 @@
+<!-- tracker/templates/tracker/issue_form.html -->
+
+{% extends 'tracker/base.html' %}
+
+{% block title %}{% if form.instance.pk %}Редактировать задачу{% else %}Создать задачу{% endif %}{% endblock %}
+
+{% block content %}
+    <h1>{% if form.instance.pk %}Редактировать задачу{% else %}Создать задачу{% endif %}</h1>
+    {% include 'tracker/partials/issue_form.html' with button_text='Сохранить' %}
+    <a href="{% url 'issue_list' %}" class="btn btn-secondary">Назад к списку</a>
+{% endblock %}

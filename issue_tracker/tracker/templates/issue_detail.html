@@ -1,0 +1,16 @@
+
+{% extends 'base.html' %}
+
+{% block title %}{{ issue.summary }}{% endblock %}
+
+{% block content %}
+    <h1>{{ issue.summary }}</h1>
+    <p>{{ issue.description }}</p>
+    <p>Статус: {{ issue.status }}</p>
+    <p>Тип: {{ issue.types.all|join:", " }}</p>
+    <p>Создано: {{ issue.created_at }}</p>
+    <p>Обновлено: {{ issue.updated_at }}</p>
+    <a href="{% url 'issue_update' issue.id %}" class="btn btn-primary">Редактировать</a>
+    <a href="{% url 'issue_delete' issue.id %}" class="btn btn-danger">Удалить</a>
+    <a href="{% url 'issue_list' %}" class="btn btn-secondary">Назад к списку</a>
+{% endblock %}

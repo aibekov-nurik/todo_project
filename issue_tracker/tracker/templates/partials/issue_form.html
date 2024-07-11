@@ -1,21 +1,20 @@
-
 <form method="post">
     {% csrf_token %}
     <div class="form-group">
-        <label for="summary">Краткое описание</label>
-        {{ form.summary|as_crispy_field }}
+        <label for="id_summary">Краткое описание</label>
+        {{ form.summary }}
     </div>
     <div class="form-group">
-        <label for="description">Полное описание</label>
-        {{ form.description|as_crispy_field }}
+        <label for="id_description">Полное описание</label>
+        {{ form.description }}
     </div>
     <div class="form-group">
-        <label for="status">Статус</label>
-        {{ form.status|as_crispy_field }}
+        <label for="id_status">Статус</label>
+        {{ form.status }}
     </div>
     <div class="form-group">
-        <label for="types">Тип</label>
-        {{ form.types|as_crispy_field }}
+        <label for="id_type">Тип</label>
+        {{ form.type }}
     </div>
     <button type="submit" class="btn btn-primary">{{ button_text }}</button>
 </form>

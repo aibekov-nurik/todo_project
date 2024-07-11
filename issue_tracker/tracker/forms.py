@@ -1,5 +1,3 @@
-# tracker/forms.py
-
 from django import forms
 from .models import Issue, Status, Type
 
@@ -10,3 +8,4 @@ class IssueForm(forms.ModelForm):
     class Meta:
         model = Issue
         fields = ['summary', 'description', 'status', 'type']
+

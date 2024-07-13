@@ -1,10 +1,34 @@
-
 {% extends 'base.html' %}
 
 {% block title %}{% if form.instance.pk %}Редактировать задачу{% else %}Создать задачу{% endif %}{% endblock %}
 
 {% block content %}
     <h1>{% if form.instance.pk %}Редактировать задачу{% else %}Создать задачу{% endif %}</h1>
-    {% include 'partials/issue_form.html' with button_text='Сохранить' %}
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="id_summary">Краткое описание</label>
+            {{ form.summary }}
+            {% for error in form.summary.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label for="id_description">Полное описание</label>
+            {{ form.description }}
+            {% for error in form.description.errors %}
+                <div class="invalid-feedback">{{ error }}</div>
+            {% endfor %}
+        </div>
+        <div class="form-group">
+            <label for="id_status">Статус</label>
+            {{ form.status }}
+        </div>
+        <div class="form-group">
+            <label for="id_type">Тип</label>
+            {{ form.type }}
+        </div>
+        <button type="submit" class="btn btn-primary">Сохранить</button>
+    </form>
     <a href="{% url 'issue_list' %}" class="btn btn-secondary">Назад к списку</a>
 {% endblock %}

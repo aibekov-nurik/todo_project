@@ -1,10 +1,18 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
-</head>
-<body>
-$END$
-</body>
-</html>
+{% extends 'base.html' %}
+
+{% block title %}Список проектов{% endblock %}
+
+{% block content %}
+    <h1>Список проектов</h1>
+    {% for project in projects %}
+        <div class="card mb-3">
+            <div class="card-body">
+                <h5 class="card-title">{{ project.name }}</h5>
+                <p class="card-text">{{ project.description }}</p>
+                <a href="{% url 'project_detail' project.id %}" class="card-link">Подробнее</a>
+                <a href="{% url 'project_update' project.id %}" class="card-link">Редактировать</a>
+                <a href="{% url 'project_delete' project.id %}" class="card-link">Удалить</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

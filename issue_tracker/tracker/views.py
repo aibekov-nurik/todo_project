@@ -1,5 +1,4 @@
-from django.db.models import Q
-from django.shortcuts import render
+
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Project, Task
@@ -37,6 +36,11 @@ class TaskCreateView(CreateView):
     fields = ['title', 'description', 'project']
     success_url = reverse_lazy('project-list')
 
+class TaskDetailView(DetailView):
+    model = Task
+    template_name = 'projects/project_detail.html'
+    context_object_name = 'task'
+
 class TaskUpdateView(UpdateView):
     model = Task
     template_name = 'projects/task_form.html'
@@ -45,7 +49,8 @@ class TaskUpdateView(UpdateView):
 
 class TaskDeleteView(DeleteView):
     model = Task
-    template_name = 'projects/project_form.html'
+    template_name = 'projects/project_confirm_delete.html'
     success_url = reverse_lazy('project-list')
+
 
 

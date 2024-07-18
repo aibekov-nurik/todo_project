@@ -1,17 +1,22 @@
 from django.urls import path
-
-from tracker.views import IssueListView, IssueDetailView, IssueCreateView, IssueUpdateView, IssueDeleteView
-from tracker.views import ProjectListView, ProjectDetailView, ProjectCreateView, ProjectUpdateView, ProjectDeleteView
+from .views import (
+    ProjectListView,
+    ProjectDetailView,
+    ProjectCreateView,
+    ProjectUpdateView,
+    ProjectDeleteView,
+    TaskCreateView,
+    TaskUpdateView,
+    TaskDeleteView,
+)
 
 urlpatterns = [
-    path('', IssueListView.as_view(), name='issue_list'),
-    path('issue/<int:pk>/', IssueDetailView.as_view(), name='issue_detail'),
-    path('issue/create/', IssueCreateView.as_view(), name='issue_create'),
-    path('issue/update/<int:pk>/', IssueUpdateView.as_view(), name='issue_update'),
-    path('issue/delete/<int:pk>/', IssueDeleteView.as_view(), name='issue_delete'),
-    path('projects/', ProjectListView.as_view(), name='project_list'),
-    path('projects/<int:pk>/', ProjectDetailView.as_view(), name='project_detail'),
-    path('projects/create/', ProjectCreateView.as_view(), name='project_create'),
-    path('projects/update/<int:pk>/', ProjectUpdateView.as_view(), name='project_update'),
-    path('projects/delete/<int:pk>/', ProjectDeleteView.as_view(), name='project_delete'),
+    path('', ProjectListView.as_view(), name='project-list'),
+    path('project/<int:pk>/', ProjectDetailView.as_view(), name='project-detail'),
+    path('project/create/', ProjectCreateView.as_view(), name='project-create'),
+    path('project/<int:pk>/update/', ProjectUpdateView.as_view(), name='project-update'),
+    path('project/<int:pk>/delete/', ProjectDeleteView.as_view(), name='project-delete'),
+    path('project/<int:pk>/task/create/', TaskCreateView.as_view(), name='task-create'),
+    path('project/<int:pk>/task/update/', TaskUpdateView.as_view(), name='task-update'),
+    path('project/<int:pk>/task/delete/', TaskDeleteView.as_view(), name='task-delete'),
 ]

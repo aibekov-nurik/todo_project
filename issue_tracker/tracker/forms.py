@@ -1,7 +1,8 @@
 
 from django import forms
 from django.core.exceptions import ValidationError
-from .models import Issue, Status, Type
+from .models import Issue, Status, Type, Project
+
 
 def validate_no_prohibited_words(value):
     prohibited_words = ['Play', 'Game']
@@ -22,3 +23,8 @@ class IssueForm(forms.ModelForm):
     class Meta:
         model = Issue
         fields = ['summary', 'description', 'status', 'type']
+
+class ProjectForm(forms.ModelForm):
+    class Meta:
+        model = Project
+        fields = ['name', 'description', 'start_date', 'end_date']

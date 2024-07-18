@@ -1,11 +1,11 @@
 from django.db import migrations
 
-def create_test_project(apps):
+def create_test_project(apps, schema_editor):
     Project = apps.get_model('tracker', 'Project')
     Issue = apps.get_model('tracker', 'Issue')
 
     test_project = Project.objects.create(
-        start_date='2024-07-11',
+        start_date='None',
         end_date=None,
         name='Test Project',
         description='This is a test project'
@@ -18,7 +18,7 @@ def create_test_project(apps):
 class Migration(migrations.Migration):
 
     dependencies = [
-    ('tracker', '0001_initial'),
+        ('tracker', '0001_initial'),
     ]
 
     operations = [

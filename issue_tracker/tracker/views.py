@@ -1,35 +1,8 @@
-from .forms.issue_form import IssueForm
-from .forms.project_form import ProjectForm
-from .models import Issue, Project
-from django.urls import reverse_lazy
+from django.db.models import Q
+from django.shortcuts import render
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-
-class IssueListView(ListView):
-    model = Issue
-    template_name = 'issue_list.html'
-    context_object_name = 'issues'
-
-class IssueDetailView(DetailView):
-    model = Issue
-    template_name = 'issue_detail.html'
-    context_object_name = 'issue'
-
-class IssueCreateView(CreateView):
-    model = Issue
-    form_class = IssueForm
-    template_name = 'issue_form.html'
-    success_url = reverse_lazy('issue_list')
-
-class IssueUpdateView(UpdateView):
-    model = Issue
-    form_class = IssueForm
-    template_name = 'issue_form.html'
-    success_url = reverse_lazy('issue_list')
-
-class IssueDeleteView(DeleteView):
-    model = Issue
-    template_name = 'issue_confirm_delete.html'
-    success_url = reverse_lazy('issue_list')
+from django.urls import reverse_lazy
+from .models import Project, Task
 
 class ProjectListView(ListView):
     model = Project
@@ -43,17 +16,36 @@ class ProjectDetailView(DetailView):
 
 class ProjectCreateView(CreateView):
     model = Project
-    form_class = ProjectForm
     template_name = 'projects/project_form.html'
-    success_url = reverse_lazy('project_list')
+    fields = ['name', 'description', 'start_date', 'end_date']
+    success_url = reverse_lazy('project-list')
 
 class ProjectUpdateView(UpdateView):
     model = Project
-    form_class = ProjectForm
     template_name = 'projects/project_form.html'
-    success_url = reverse_lazy('project_list')
+    fields = ['name', 'description']
+    success_url = reverse_lazy('project-list')
 
 class ProjectDeleteView(DeleteView):
     model = Project
     template_name = 'projects/project_confirm_delete.html'
-    success_url = reverse_lazy('project_list')
+    success_url = reverse_lazy('project-list')
+
+class TaskCreateView(CreateView):
+    model = Task
+    template_name = 'projects/task_form.html'
+    fields = ['title', 'description', 'project']
+    success_url = reverse_lazy('project-list')
+
+class TaskUpdateView(UpdateView):
+    model = Task
+    template_name = 'projects/task_form.html'
+    fields = ['title', 'description', 'project']
+    success_url = reverse_lazy('project-list')
+
+class TaskDeleteView(DeleteView):
+    model = Task
+    template_name = 'projects/project_form.html'
+    success_url = reverse_lazy('project-list')
+
+

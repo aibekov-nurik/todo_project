@@ -1,4 +1,4 @@
-
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
 from .models import Project, Task
@@ -13,24 +13,24 @@ class ProjectDetailView(DetailView):
     template_name = 'projects/project_detail.html'
     context_object_name = 'project'
 
-class ProjectCreateView(CreateView):
+class ProjectCreateView(LoginRequiredMixin, CreateView):
     model = Project
     template_name = 'projects/project_form.html'
     fields = ['name', 'description', 'start_date', 'end_date']
     success_url = reverse_lazy('project-list')
 
-class ProjectUpdateView(UpdateView):
+class ProjectUpdateView(LoginRequiredMixin, UpdateView):
     model = Project
     template_name = 'projects/project_form.html'
     fields = ['name', 'description']
     success_url = reverse_lazy('project-list')
 
-class ProjectDeleteView(DeleteView):
+class ProjectDeleteView(LoginRequiredMixin, DeleteView):
     model = Project
     template_name = 'projects/project_confirm_delete.html'
     success_url = reverse_lazy('project-list')
 
-class TaskCreateView(CreateView):
+class TaskCreateView(LoginRequiredMixin, CreateView):
     model = Task
     template_name = 'projects/task_form.html'
     fields = ['title', 'description', 'project']
@@ -41,16 +41,26 @@ class TaskDetailView(DetailView):
     template_name = 'projects/project_detail.html'
     context_object_name = 'task'
 
-class TaskUpdateView(UpdateView):
+class TaskUpdateView(LoginRequiredMixin, UpdateView):
     model = Task
     template_name = 'projects/task_form.html'
     fields = ['title', 'description', 'project']
     success_url = reverse_lazy('project-list')
 
-class TaskDeleteView(DeleteView):
+
+class TaskDeleteView(LoginRequiredMixin, DeleteView):
     model = Task
     template_name = 'projects/project_confirm_delete.html'
     success_url = reverse_lazy('project-list')
+
+
+
+
+
+
+
+
+
 
 
 

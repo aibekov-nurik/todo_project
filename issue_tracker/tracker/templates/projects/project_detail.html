@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>{{ object.name }}</h1>
+  <p>{{ object.description }}</p>
+  <a href="{% url 'project-update' object.pk %}">Редактировать проект</a>
+  <a href="{% url 'project-delete' object.pk %}">Удалить проект</a>
+
+  <h2>Задачи проекта</h2>
+  <ul>
+    {% for task in object.tasks.all %}
+      <li>
+        <a href="{% url 'task-detail' task.pk %}">{{ task.name }}</a>
+        <a href="{% url 'task-update' task.pk %}">Редактировать</a>
+        <a href="{% url 'task-delete' task.pk %}">Удалить</a>
+      </li>
+    {% empty %}
+      <li>Задач нет</li>
+    {% endfor %}
+  </ul>
+
+  <a href="{% url 'task-create' object.pk %}">Создать новую задачу</a>
+{% endblock %}

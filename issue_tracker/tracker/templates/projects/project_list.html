@@ -1,0 +1,37 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+  <h1>Список проектов</h1>
+  <form method="get" action="">
+    <input type="text" name="q" placeholder="Поиск проектов" value="{{ request.GET.q }}">
+    <button type="submit">Поиск</button>
+  </form>
+  <ul>
+    {% for project in object_list %}
+      <li><a href="{% url 'project-detail' project.pk %}">{{ project.name }}</a></li>
+    {% empty %}
+      <li>Проекты не найдены</li>
+    {% endfor %}
+  </ul>
+
+  <div class="pagination">
+      <span class="step-links">
+          {% if page_obj.has_previous %}
+              <a href="?page=1{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Первая</a>
+              <a href="?page={{ page_obj.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Предыдущая</a>
+          {% endif %}
+
+          <span class="current">
+              Страница {{ page_obj.number }} из {{ page_obj.paginator.num_pages }}.
+          </span>
+
+          {% if page_obj.has_next %}
+              <a href="?page={{ page_obj.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Следующая</a>
+              <a href="?page={{ page_obj.paginator.num_pages }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">Последняя</a>
+          {% endif %}
+      </span>
+  </div>
+
+  <a href="{% url 'project-create' %}">Создать новый проект</a>
+{% endblock %}

@@ -1,137 +1,50 @@
 [
-    {
-        "model": "auth.user",
-        "pk": 1,
-        "fields": {
-            "password": "pbkdf2_sha256$720000$4arM1EgtoJq2aXmEAwDidh$LUi+ycNh1/P6N/SYMHmBrPASMWyDJTIxwxiOLFz2PiU=",
-            "last_login": "2024-07-11T08:18:16.126Z",
-            "is_superuser": true,
-            "username": "aibekovnurik",
-            "first_name": "",
-            "last_name": "",
-            "email": "aibekovnurkerim@gmail.com",
-            "is_staff": true,
-            "is_active": true,
-            "date_joined": "2024-07-11T07:38:22.127Z",
-            "groups": [],
-            "user_permissions": []
-        }
-    },
-    {
-        "model": "tracker.status",
-        "pk": 7,
-        "fields": {
-            "name": "New"
-        }
-    },
-    {
-        "model": "tracker.status",
-        "pk": 8,
-        "fields": {
-            "name": "In Progress"
-        }
-    },
-    {
-        "model": "tracker.status",
-        "pk": 9,
-        "fields": {
-            "name": "Done"
-        }
-    },
-    {
-        "model": "tracker.type",
-        "pk": 10,
-        "fields": {
-            "name": "Task"
-        }
-    },
-    {
-        "model": "tracker.type",
-        "pk": 11,
-        "fields": {
-            "name": "Bug"
-        }
-    },
-    {
-        "model": "tracker.type",
-        "pk": 12,
-        "fields": {
-            "name": "Enhancement"
-        }
-    },
-    {
-        "model": "tracker.project",
-        "pk": 1,
-        "fields": {
-            "start_date": "2024-07-11",
-            "end_date": null,
-            "name": "Test Project",
-            "description": "This is a test project"
-        }
-    },
-    {
-        "model": "tracker.issue",
-        "pk": 1,
-        "fields": {
-            "summary": "First task",
-            "description": "This is the first task",
-            "status": 7,
-            "type": 11,
-            "project": 1,
-            "created_at": "2024-07-11T00:00:00Z",
-            "updated_at": "2024-07-11T00:00:00Z"
-        }
-    },
-    {
-        "model": "tracker.issue",
-        "pk": 2,
-        "fields": {
-            "summary": "Second task",
-            "description": "This is the second task",
-            "status": 8,
-            "type": 10,
-            "project": 1,
-            "created_at": "2024-07-11T00:00:00Z",
-            "updated_at": "2024-07-11T00:00:00Z"
-        }
-    },
-    {
-        "model": "tracker.issue",
-        "pk": 3,
-        "fields": {
-            "summary": "Third task",
-            "description": "This is the third task",
-            "status": 9,
-            "type": 12,
-            "project": 1,
-            "created_at": "2024-07-11T00:00:00Z",
-            "updated_at": "2024-07-11T00:00:00Z"
-        }
-    },
-    {
-        "model": "tracker.issue",
-        "pk": 4,
-        "fields": {
-            "summary": "Fourth task",
-            "description": "This is the fourth task",
-            "status": 7,
-            "type": 12,
-            "project": 1,
-            "created_at": "2024-07-11T00:00:00Z",
-            "updated_at": "2024-07-11T00:00:00Z"
-        }
-    },
-    {
-        "model": "tracker.issue",
-        "pk": 5,
-        "fields": {
-            "summary": "Fifth task",
-            "description": "This is the fifth task",
-            "status": 9,
-            "type": 10,
-            "project": 1,
-            "created_at": "2024-07-11T00:00:00Z",
-            "updated_at": "2024-07-11T00:00:00Z"
-        }
+  {
+    "model": "auth.user",
+    "pk": 1,
+    "fields": {
+      "username": "manager",
+      "password": "pbkdf2_sha256$260000$...",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "is_superuser": false,
+      "user_permissions": [],
+      "groups": [1]
     }
+  },
+  {
+    "model": "auth.user",
+    "pk": 2,
+    "fields": {
+      "username": "lead",
+      "password": "pbkdf2_sha256$260000$...",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "is_superuser": false,
+      "user_permissions": [],
+      "groups": [2]
+    }
+  },
+  {
+    "model": "auth.user",
+    "pk": 3,
+    "fields": {
+      "username": "dev",
+      "password": "pbkdf2_sha256$260000$...",
+      "first_name": "",
+      "last_name": "",
+      "email": "",
+      "is_staff": true,
+      "is_active": true,
+      "is_superuser": false,
+      "user_permissions": [],
+      "groups": [3]
+    }
+  }
 ]

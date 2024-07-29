@@ -1,7 +1,8 @@
 
 from django import forms
+from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from .models import Issue, Status, Type, Project
+from .models import Issue, Status, Type, Project, ProjectUser
 
 
 def validate_no_prohibited_words(value):
@@ -28,3 +29,11 @@ class ProjectForm(forms.ModelForm):
     class Meta:
         model = Project
         fields = ['name', 'description', 'start_date', 'end_date']
+
+class ProjectUserForm(forms.ModelForm):
+    class Meta:
+        model = ProjectUser
+        fields = ['user', 'role']
+
+class ProjectUserDeleteForm(forms.Form):
+    user = forms.ModelChoiceField(queryset=User.objects.all())

@@ -1,0 +1,31 @@
+from datetime import timedelta
+from django.utils import timezone
+from tasks.models import Issue
+from django.db.models import Q
+
+current_date = timezone.now()
+last_month_start = current_date - timedelta(days=current_date.day - 1, months=1)
+closed_issues_last_month = Issue.objects.filter(
+    updated_at__gte=last_month_start,  
+    status__name='Done' 
+)
+print(closed_issues_last_month)
+
+
+from django.db.models import Q
+from tasks.models import Issue, Status, Type
+status_names = ['New', 'In Progress']
+type_names = ['Task', 'Enhancement']
+filtered_issues = Issue.objects.filter(
+    Q(status__name__in=status_names) & Q(type__name__in=type_names)
+)
+print(filtered_issues)
+
+
+from django.db.models import Q
+from tasks.models import Issue, Type
+
+bug_related_issues = Issue.objects.filter(
+    ~Q(status__name='Done') & (Q(summary__icontains='bug') | Q(type__name='Bug'))
+)
+print(bug_related_issues)
